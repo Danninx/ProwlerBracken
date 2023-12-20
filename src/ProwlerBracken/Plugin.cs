@@ -35,7 +35,7 @@ namespace ProwlerBracken
         void Awake()
         {
             Instance = this;
-            Assets.PopulateAssets();
+            Assets.PopulateAssets(((ProwlerBrackenBase)this).Logger);
             ((ProwlerBrackenBase)this).Logger.LogError((object)"You're the best of all of us Miles...");
             Harmony.PatchAll(typeof(ProwlerBrackenBase));
             Harmony.PatchAll(typeof(BrackenPatch));

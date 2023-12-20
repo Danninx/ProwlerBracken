@@ -1,5 +1,7 @@
 ﻿using HarmonyLib;
+using ProwlerBracken;
 using ProwlerBracken.AssetManagement;
+using ProwlerBracken.Libraries;
 
 namespace ProwlerBracken.Patches
 {
@@ -12,18 +14,14 @@ namespace ProwlerBracken.Patches
         {
             // Bracken angry
             __instance.creatureAngerVoice.clip = Assets.ProwlerChase;
-            
-            // Bracken spotted
-            __instance.creatureVoice.clip = Assets.ProwlerAmbient2;
-
-            // ??
-            __instance.creatureSFX.clip = Assets.ProwlerAmbient1;
 
             // Change bracken kill noise
             __instance.crackNeckAudio.clip = Assets.ProwlerKill;
             __instance.crackNeckSFX = Assets.ProwlerKill;
 
+            __instance.gameObject.AddComponent<ProwlerBehavior> ().Initialize(__instance);
 
+            ProwlerBrackenBase.LogInfo("Prowler initiated.");
         }
 
         [HarmonyPatch("Update")]
